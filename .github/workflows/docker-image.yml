@@ -23,3 +23,12 @@ jobs:
         | docker build -t pvasileiou/multi-nginx ./nginx
         | docker build -t pvasileiou/multi-server ./server
         | docker build -t pvasileiou/multi-worker ./worker
+    - name: docker login
+      env:
+        DOCKER_USER: ${{secrets.DOCKER_ID}}
+        DOCKER_PASSWORD: ${{secrets.DOCKER_ACCESS_TOKEN}}
+      run: |
+        docker login -u $DOCKER_ID -p $DOCKER_ACCESS_TOKEN 
+    - name: Docker Push
+      run: docker push pvasileiou/multi-client | docker push pvasileiou/multi-nginx
+        | docker push pvasileiou/multi-server | docker push pvasileiou/multi-worker
