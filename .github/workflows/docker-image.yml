@@ -20,9 +20,12 @@ jobs:
       run: docker run -e CI=true pvasileiou/react-test npm test
     - name: Build the Docker images
       run: docker build -t pvasileiou/multi-client ./client
-        | docker build -t pvasileiou/multi-nginx ./nginx
-        | docker build -t pvasileiou/multi-server ./server
-        | docker build -t pvasileiou/multi-worker ./worker
+    - name: Build the Docker images
+      run: docker build -t pvasileiou/multi-nginx ./nginx
+    - name: Build the Docker images
+      run: docker build -t pvasileiou/multi-server ./server
+    - name: Build the Docker images
+      run: docker build -t pvasileiou/multi-worker ./worker
     - name: docker login
       env:
         DOCKER_USER: ${{secrets.DOCKER_ID}}
