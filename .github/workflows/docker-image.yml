@@ -34,6 +34,9 @@ jobs:
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
     - name: Docker Push
       run: docker push pvasileiou/multi-client 
-        | docker push pvasileiou/multi-nginx
-        | docker push pvasileiou/multi-server 
-        | docker push pvasileiou/multi-worker
+    - name: Docker Push
+      run: docker push pvasileiou/multi-nginx 
+    - name: Docker Push
+      run: docker push pvasileiou/multi-server 
+    - name: Docker Push
+      run: docker push pvasileiou/multi-worker
