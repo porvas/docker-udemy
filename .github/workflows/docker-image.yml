@@ -19,7 +19,7 @@ jobs:
     - name: Run tests
       run: docker run -e CI=true pvasileiou/react-test npm test
     - name: Build the Docker images
-      run: docker build -t pvasileiou/multi-client -f ./client
-        | docker build -t pvasileiou/multi-nginx -f ./nginx
-        | docker build -t pvasileiou/multi-server -f ./server
-        | docker build -t pvasileiou/multi-worker -f ./worker
+      run: docker build -t pvasileiou/multi-client ./client
+        | docker build -t pvasileiou/multi-nginx ./nginx
+        | docker build -t pvasileiou/multi-server ./server
+        | docker build -t pvasileiou/multi-worker ./worker
