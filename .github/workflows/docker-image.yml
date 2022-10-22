@@ -28,7 +28,7 @@ jobs:
         DOCKER_USER: ${{secrets.DOCKER_ID}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_ACCESS_TOKEN}}
       run: |
-        docker login -u $DOCKER_ID -p $DOCKER_ACCESS_TOKEN 
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD 
     - name: Docker Push
       run: docker push pvasileiou/multi-client | docker push pvasileiou/multi-nginx
         | docker push pvasileiou/multi-server | docker push pvasileiou/multi-worker

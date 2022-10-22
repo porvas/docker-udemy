@@ -3,20 +3,20 @@ services:
   - docker
 
 before_install: 
-  - docker build -t porvas/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t pvasileiou/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run porvas/react-test npm test -- --coverage
+  - docker run -e CI=true pvasileiou/react-test npm test
 
 after_success:
-  - docker build -t porvas/multi-client -f ./client
-  - docker build -t porvas/multi-nginx -f ./nginx
-  - docker build -t porvas/multi-server -f ./server
-  - docker build -t porvas/multi-worker -f ./worker
+  - docker build -t pvasileiou/multi-client -f ./client
+  - docker build -t pvasileiou/multi-nginx -f ./nginx
+  - docker build -t pvasileiou/multi-server -f ./server
+  - docker build -t pvasileiou/multi-worker -f ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin 
   # take those images and push them to docker hub
-  - docker push porvas/multi-client
-  - docker push porvas/multi-nginx
-  - docker push porvas/multi-server
-  - docker push porvas/multi-worker
+  - docker push pvasileiou/multi-client
+  - docker push pvasileiou/multi-nginx
+  - docker push pvasileiou/multi-server
+  - docker push pvasileiou/multi-worker
